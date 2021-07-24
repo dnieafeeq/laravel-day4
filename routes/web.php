@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\FailController;
+use App\Http\Controllers\KatalogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +20,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/katalog_internal', KatalogController::class);
+Route::resource('/katalog_external', KatalogController::class);
 Route::get('/dashboard', function () { return view('dashboard'); });
-Route::get('/default', function () { return view('pages.dashboards.default'); });
-Route::get('/automotive', function () { return view('pages.dashboards.automotive'); });
+// Route::get('/katalog_internal', function () { return view('katalogs.katalog_internal'); });
+// Route::get('/katalog_external', function () { return view('katalogs.katalog_external'); });
 Route::get('/crm', function () { return view('pages.dashboards.crm'); });
 Route::get('/smarthome', function () { return view('pages.dashboards.smart-home'); });
 Route::get('/vr-info', function () { return view('pages.dashboards.vr.vr-info'); });
+Route::get('/charts', function () { return view('pages.pages.charts'); });
+Route::get('/datatables', function () { return view('pages.applications.datatables'); });
 
 
 

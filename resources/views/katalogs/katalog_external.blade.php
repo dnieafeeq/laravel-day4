@@ -1,10 +1,10 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-<!-- <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Data Dictionary</a></li> -->
-<li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+<li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Data Catalogue</a></li>
+<li class="breadcrumb-item text-sm text-dark active" aria-current="page">Data Dictionary</li>
 </ol>
-<h6 class="font-weight-bolder mb-0">Dashboard</h6>
+<h6 class="font-weight-bolder mb-0">External</h6>
 @stop
 
 @section('content')
@@ -68,6 +68,76 @@
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Add Data Catalogue</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/katalogs" class="">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <!-- <label>File Name </label>
+                                    <input class="form-control mb-3" type="text" name="filename"> -->
+                                    <label>Owner </label>
+                                    <input class="form-control mb-3" type="text" name="owner">
+                                    <label>Tags </label>
+                                    <input class="form-control mb-3" type="text" name="tags">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Type </label>
+                                    <input class="form-control mb-3" type="text" name="type">
+                                    <label>Date Added </label>
+                                    <input class="form-control mb-3" type="date" name="date">
+                                    <input type="hidden" name="fail_id" value=1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12 text-right">
+                                <button class="btn btn-primary text-right" type="submit" disabled>Add Data</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                    <h5 class="mb-0">Data Catalogue</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-flush" id="datatable-basic">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Filename</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Owner</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tags</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Added</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="horizontal dark my-5">
     <footer class="footer pt-3  ">
         <div class="container-fluid">
             <div class="row align-items-center justify-content-lg-between">
@@ -101,6 +171,26 @@
         </div>
     </footer>
 </div>
+<script>
+    const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+        searchable: false,
+        fixedHeight: true
+    });
+
+    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+        searchable: true,
+        fixedHeight: true
+    });
+</script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
 
 @include('components.charts')
 
